@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DHOBI G — Campus Laundry</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Krona+One&family=Kosugi&family=Vina+Sans&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets — load order matters -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/hero.css">
+    <link rel="stylesheet" href="css/services.css">
+    <link rel="stylesheet" href="css/process.css">
+    <link rel="stylesheet" href="css/footer.css">
+</head>
+<body>
+
+    <!-- ════════════════════════════════════════════════════
+         SPLASH SCREEN
+    ════════════════════════════════════════════════════════ -->
+    <div id="splash-screen">
+        <h1 class="splash-logo">DHOBI <span class="logo-accent">G</span></h1>
+    </div>
+
+
+    <!-- ════════════════════════════════════════════════════
+         STICKY NAV
+         nav-svc-num + nav-svc-name update via ui.js
+         as user scrolls through the services section
+    ════════════════════════════════════════════════════════ -->
+    <nav class="site-nav">
+        <a href="#hero" class="nav-logo">DHOBI <span class="accent">G</span></a>
+
+        <!-- Scroll indicator — hidden until services section is in view -->
+        <div class="nav-scroll-indicator">
+            <span id="nav-svc-num"  class="nav-svc-num"></span>
+            <span id="nav-svc-name" class="nav-svc-name"></span>
+        </div>
+    </nav>
+
+
+    <!-- ════════════════════════════════════════════════════
+         SECTION 01 — HERO
+    ════════════════════════════════════════════════════════ -->
+    <main id="hero" class="main-canvas">
+
+        <header class="brand-header cascade-item">
+            <h1 class="main-logo">DHOBI <span class="blue-text">G</span></h1>
+        </header>
+
+        <div class="right-edge-tagline">
+            <h2 class="tagline-word cascade-item">EASIER.</h2>
+            <h2 class="tagline-word cascade-item">CLEANER.</h2>
+            <h2 class="tagline-word cascade-item blue-text">GREENER.</h2>
+        </div>
+
+        <footer class="bottom-left-tech">
+            <p class="tech-heading cascade-item">OUR STATE-OF-THE-ART TECHNOLOGY:</p>
+            <p class="tech-description">
+                <span class="tech-line cascade-item">We utilise the <span class="blue-text">latest technology to provide</span></span>
+                <span class="tech-line cascade-item"><span class="blue-text">our customers most efficient laundry</span></span>
+                <span class="tech-line cascade-item"><span class="blue-text">services</span></span>
+            </p>
+        </footer>
+
+        <div class="middle-strip">
+            <div class="content-arena">
+                <div class="center-square cascade-item">
+                    <video class="bg-blend-video" autoplay loop muted playsinline>
+                        <source src="assets/washingmachine.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+    <!-- ════════════════════════════════════════════════════
+         SECTION 02 — SERVICES
+    ════════════════════════════════════════════════════════ -->
+    <section id="services" class="services-section">
+
+        <div class="svc-header">
+            <span class="svc-header-tag">(SERVICES)</span>
+            <h2 class="svc-header-title">WHAT WE <span class="accent">DO</span></h2>
+        </div>
+
+        <div class="svc-divider"></div>
+
+        <!-- 01. Wash & Fold -->
+        <div class="service-item"
+             data-num="01." data-name="Wash &amp; Fold"
+             onclick="toggleService(this)">
+            <div class="svc-row">
+                <span class="svc-num">01<span class="dot">.</span></span>
+                <div class="svc-img-wrap">
+                    <svg class="slot-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="8" y="8" width="48" height="52" rx="4"/>
+                        <circle cx="32" cy="36" r="14"/>
+                        <circle cx="32" cy="36" r="6"/>
+                        <circle cx="16" cy="18" r="2.5" fill="currentColor" stroke="none"/>
+                        <circle cx="23" cy="18" r="2.5" fill="currentColor" stroke="none"/>
+                        <line x1="30" y1="18" x2="48" y2="18"/>
+                    </svg>
+                </div>
+                <div class="svc-details">
+                    <span class="svc-name-label">Wash &amp; Fold</span>
+                    <div class="svc-expanded">
+                        <h3 class="svc-name-big">Wash &amp; Fold</h3>
+                        <p class="svc-desc">Fast, fluffy, and done right. Drop it off — we'll handle the load. Returned washed, folded, and ready to wear.</p>
+                        <div class="svc-tags">
+                            <span class="svc-tag">Quick Turnaround</span>
+                            <span class="svc-tag">Per KG Pricing</span>
+                            <span class="svc-tag">Fabric Safe</span>
+                            <span class="svc-tag">Hostel Friendly</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 02. Dry Cleaning -->
+        <div class="service-item"
+             data-num="02." data-name="Dry Cleaning"
+             onclick="toggleService(this)">
+            <div class="svc-row">
+                <span class="svc-num">02<span class="dot">.</span></span>
+                <div class="svc-img-wrap">
+                    <svg class="slot-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M32 14 C32 14 32 10 36 10 C40 10 40 14 40 14"/>
+                        <path d="M32 14 L10 42 Q8 48 14 48 L50 48 Q56 48 54 42 L32 14"/>
+                        <line x1="32" y1="14" x2="32" y2="20"/>
+                        <path d="M20 36 Q32 30 44 36" stroke-dasharray="3 2"/>
+                    </svg>
+                </div>
+                <div class="svc-details">
+                    <span class="svc-name-label">Dry Cleaning</span>
+                    <div class="svc-expanded">
+                        <h3 class="svc-name-big">Dry Cleaning</h3>
+                        <p class="svc-desc">Precision care for your finest pieces. Formals, delicates, and fabrics that demand more — handled with expertise.</p>
+                        <div class="svc-tags">
+                            <span class="svc-tag">Delicate Fabrics</span>
+                            <span class="svc-tag">Stain Removal</span>
+                            <span class="svc-tag">Premium Finish</span>
+                            <span class="svc-tag">Odour-Free</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 03. Express Ironing -->
+        <div class="service-item"
+             data-num="03." data-name="Express Ironing"
+             onclick="toggleService(this)">
+            <div class="svc-row">
+                <span class="svc-num">03<span class="dot">.</span></span>
+                <div class="svc-img-wrap">
+                    <svg class="slot-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M10 40 Q10 28 24 28 L52 28 L52 40 Q52 44 46 44 L16 44 Q10 44 10 40Z"/>
+                        <rect x="30" y="20" width="6" height="8" rx="2"/>
+                        <line x1="12" y1="34" x2="50" y2="34"/>
+                        <circle cx="20" cy="48" r="1.5" fill="currentColor" stroke="none"/>
+                        <circle cx="28" cy="50" r="1.5" fill="currentColor" stroke="none"/>
+                        <circle cx="36" cy="48" r="1.5" fill="currentColor" stroke="none"/>
+                    </svg>
+                </div>
+                <div class="svc-details">
+                    <span class="svc-name-label">Express Ironing</span>
+                    <div class="svc-expanded">
+                        <h3 class="svc-name-big">Express Ironing</h3>
+                        <p class="svc-desc">Crisp and crease-free, every time. Steam-pressed and ready for that presentation, interview, or anything that counts.</p>
+                        <div class="svc-tags">
+                            <span class="svc-tag">Steam Press</span>
+                            <span class="svc-tag">Same Day</span>
+                            <span class="svc-tag">Crease-Free</span>
+                            <span class="svc-tag">Collar &amp; Cuff Care</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 04. Pickup & Delivery -->
+        <div class="service-item"
+             data-num="04." data-name="Pickup &amp; Delivery"
+             onclick="toggleService(this)">
+            <div class="svc-row">
+                <span class="svc-num">04<span class="dot">.</span></span>
+                <div class="svc-img-wrap">
+                    <svg class="slot-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="8" y="22" width="32" height="24" rx="3"/>
+                        <path d="M40 30 L56 30 L56 46 L40 46"/>
+                        <path d="M44 30 L44 22"/>
+                        <circle cx="18" cy="50" r="4"/>
+                        <circle cx="48" cy="50" r="4"/>
+                        <path d="M18 14 L24 8 L30 14"/>
+                        <line x1="24" y1="8" x2="24" y2="22"/>
+                    </svg>
+                </div>
+                <div class="svc-details">
+                    <span class="svc-name-label">Pickup &amp; Delivery</span>
+                    <div class="svc-expanded">
+                        <h3 class="svc-name-big">Pickup &amp; Delivery</h3>
+                        <p class="svc-desc">We come to your hostel. You don't move. Schedule a slot and we handle the round trip — right to your door.</p>
+                        <div class="svc-tags">
+                            <span class="svc-tag">Campus Rounds</span>
+                            <span class="svc-tag">Scheduled Slots</span>
+                            <span class="svc-tag">Live Tracking</span>
+                            <span class="svc-tag">No Extra Cost</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 05. Eco Green Wash -->
+        <div class="service-item"
+             data-num="05." data-name="Eco Green Wash"
+             onclick="toggleService(this)">
+            <div class="svc-row">
+                <span class="svc-num">05<span class="dot">.</span></span>
+                <div class="svc-img-wrap">
+                    <svg class="slot-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M32 10 C32 10 52 18 48 38 C44 54 20 54 20 38 C20 24 32 10 32 10Z"/>
+                        <path d="M32 10 L32 54"/>
+                        <path d="M22 30 C26 26 38 28 42 34"/>
+                        <path d="M52 40 C52 40 58 48 52 52 C46 56 46 44 52 40Z"/>
+                    </svg>
+                </div>
+                <div class="svc-details">
+                    <span class="svc-name-label">Eco Green Wash</span>
+                    <div class="svc-expanded">
+                        <h3 class="svc-name-big">Eco Green Wash</h3>
+                        <p class="svc-desc">Clean clothes, cleaner planet. Cold water cycles, plant-based detergents, and zero compromise on quality.</p>
+                        <div class="svc-tags">
+                            <span class="svc-tag">Cold Water Wash</span>
+                            <span class="svc-tag">Plant-Based</span>
+                            <span class="svc-tag">Carbon Neutral</span>
+                            <span class="svc-tag">Biodegradable</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════
+         SECTION 03 — PROCESS  (shell — build next)
+    ════════════════════════════════════════════════════════ -->
+    <section id="process">
+        <!-- TODO -->
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════
+         SECTION 04 — FOOTER   (shell — build next)
+    ════════════════════════════════════════════════════════ -->
+    <footer id="footer">
+        <!-- TODO -->
+    </footer>
+
+
+    <!-- Scripts — deferred, load after DOM -->
+    <script src="js/main.js"  defer></script>
+    <script src="js/ui.js"    defer></script>
+
+</body>
+</html>

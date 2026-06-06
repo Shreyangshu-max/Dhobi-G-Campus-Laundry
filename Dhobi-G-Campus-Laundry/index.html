@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DHOBI G — Campus Laundry</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Krona+One&family=Kosugi&family=League+Gothic&family=Vina+Sans&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheets — load order matters -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/hero.css">
+    <link rel="stylesheet" href="css/services.css">
+    <link rel="stylesheet" href="css/process.css">
+    <link rel="stylesheet" href="css/footer.css">
+</head>
+
+<body>
+
+    <!-- ════════════════════════════════════════════════════
+         SPLASH SCREEN
+    ════════════════════════════════════════════════════════ -->
+    <div id="splash-screen">
+        <h1 class="splash-logo">DHOBI <span class="logo-accent">G</span></h1>
+    </div>
+
+
+    <!-- ════════════════════════════════════════════════════
+         STICKY NAV
+         nav-svc-num + nav-svc-name update via ui.js
+         as user scrolls through the services section
+    ════════════════════════════════════════════════════════ -->
+    <nav class="site-nav">
+        <a href="#hero" class="nav-logo">DHOBI <span class="accent">G</span></a>
+
+        <!-- Scroll indicator — hidden until services section is in view -->
+        <div class="nav-scroll-indicator">
+            <span id="nav-svc-num" class="nav-svc-num"></span>
+            <span id="nav-svc-name" class="nav-svc-name"></span>
+        </div>
+    </nav>
+
+
+    <!-- ════════════════════════════════════════════════════
+         SECTION 01 — HERO
+    ════════════════════════════════════════════════════════ -->
+    <main id="hero" class="main-canvas">
+
+        <header class="brand-header cascade-item">
+            <h1 class="main-logo">DHOBI <span class="blue-text">G</span></h1>
+        </header>
+
+        <div class="right-edge-tagline">
+            <h2 class="tagline-word cascade-item">EASIER.</h2>
+            <h2 class="tagline-word cascade-item">CLEANER.</h2>
+            <h2 class="tagline-word cascade-item blue-text">GREENER.</h2>
+        </div>
+
+        <footer class="bottom-left-tech">
+            <p class="tech-heading cascade-item">OUR STATE-OF-THE-ART TECHNOLOGY:</p>
+            <p class="tech-description">
+                <span class="tech-line cascade-item">We utilise the <span class="blue-text">latest technology to
+                        provide</span></span>
+                <span class="tech-line cascade-item"><span class="blue-text">our customers most efficient
+                        laundry</span></span>
+                <span class="tech-line cascade-item"><span class="blue-text">services</span></span>
+            </p>
+        </footer>
+
+        <div class="middle-strip">
+            <div class="content-arena">
+                <div class="center-square cascade-item">
+                    <video class="bg-blend-video" autoplay loop muted playsinline>
+                        <source src="assets/washingmachine.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+    <!-- ════════════════════════════════════════════════════
+         SECTION 02 — SERVICES
+    ════════════════════════════════════════════════════════ -->
+    <section id="services" class="services-section">
+
+        <div class="svc-header">
+            <div class="svc-title-wrap">
+                <h2 class="svc-header-title">HOW WE CAN HELP</h2>
+                <span class="svc-header-tag">(SERVICES)</span>
+            </div>
+        </div>
+
+        <div class="services-stack">
+            <article class="service-row" data-num="01." data-name="Certified Care">
+                <div class="svc-num">01<span>.</span></div>
+
+                <div class="svc-media">
+                    <img src="assets/images/certified-care.png" alt="Dhobi G laundry attendants" class="svc-img">
+                </div>
+
+                <div class="svc-content">
+                    <h3>Certified Care</h3>
+                    <p>Trained staff clean every fabric safely, from pickup to delivery.</p>
+
+                    <div class="svc-tags">
+                        <span>Fabric Care</span>
+                        <span>Stain Removal</span>
+                        <span>Trained Staff</span>
+                        <span>Safe Handling</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="service-row" data-num="02." data-name="Eco Machinery">
+                <div class="svc-num">02<span>.</span></div>
+
+                <div class="svc-media">
+                    <img src="assets/images/eco-friendly (1).png" alt="Eco-friendly laundry machinery" class="svc-img">
+                </div>
+
+                <div class="svc-content">
+                    <h3>Eco Machinery</h3>
+                    <p>Clean clothes safely with eco-friendly hi-tech machines.</p>
+
+                    <div class="svc-tags">
+                        <span>Eco Wash</span>
+                        <span>Smart Machines</span>
+                        <span>Fabric Safe</span>
+                        <span>Low Water Use</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="service-row" data-num="03." data-name="Eco Chemicals">
+                <div class="svc-num">03<span>.</span></div>
+
+                <div class="svc-media">
+                    <img src="assets/images/chemicals.png" alt="Eco-friendly laundry chemicals" class="svc-img">
+                </div>
+
+                <div class="svc-content">
+                    <h3>Eco Chemicals</h3>
+                    <p>Eco-safe chemicals protect clothes while removing dirt and stains.</p>
+
+                    <div class="svc-tags">
+                        <span>Eco Safe</span>
+                        <span>Stain Care</span>
+                        <span>Fabric Friendly</span>
+                        <span>Color Protection</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="service-row" data-num="04." data-name="Premium Wash">
+                <div class="svc-num">04<span>.</span></div>
+
+                <div class="svc-media">
+                    <img src="assets/images/premium-wash.png" alt="Premium laundry wash quality" class="svc-img">
+                </div>
+
+                <div class="svc-content">
+                    <h3>Premium Wash</h3>
+                    <p>Expert washing keeps clothes clean, soft, and stain-free.</p>
+
+                    <div class="svc-tags">
+                        <span>Deep Clean</span>
+                        <span>Fresh Finish</span>
+                        <span>Fabric Safe</span>
+                        <span>Stain Removal</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="service-row" data-num="05." data-name="24/7 Support">
+                <div class="svc-num">05<span>.</span></div>
+
+                <div class="svc-media">
+                    <img src="assets/images/communincation.png" alt="Customer support communication headset"
+                        class="svc-img">
+                </div>
+
+                <div class="svc-content">
+                    <h3>24/7 Support</h3>
+                    <p>Get fast help anytime for pickup, delivery, or service questions.</p>
+
+                    <div class="svc-tags">
+                        <span>Quick Help</span>
+                        <span>24/7 Support</span>
+                        <span>Service Updates</span>
+                        <span>Customer Care</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════
+         SECTION 03 — PROCESS
+    ════════════════════════════════════════════════════════ -->
+    <section id="process">
+        <!-- TODO -->
+    </section>
+
+    <!-- ════════════════════════════════════════════════════
+         SECTION 04 — FOOTER
+    ════════════════════════════════════════════════════════ -->
+    <footer id="footer">
+        <!-- TODO -->
+    </footer>
+
+    <!-- Scripts — load once after DOM -->
+    <script src="js/ui.js"></script>
+
+</body>
+
+</html>

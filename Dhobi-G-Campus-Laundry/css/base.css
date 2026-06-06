@@ -1,0 +1,78 @@
+/* ============================================================
+   BASE.CSS — Global tokens, reset, typography
+   Dhobi G Campus Laundry
+   ============================================================ */
+
+:root {
+    /* Brand Colours */
+    --brand-blue:  #007bb5;
+    --brand-black: #090909;
+    --middle-grey: #0b0b0b;
+    --grey-box:    #2d2d2d;
+    --text-white:  #ffffff;
+
+    /* Semantic shorthands */
+    --blue:   var(--brand-blue);
+    --black:  var(--brand-black);
+    --white:  var(--text-white);
+    --border: rgba(255, 255, 255, 0.07);
+    --muted:  rgba(255, 255, 255, 0.22);
+
+    /* Typography */
+    --font-display: 'Vina Sans',  sans-serif;
+    --font-heading: 'Krona One',  sans-serif;
+    --font-body:    'Kosugi',     sans-serif;
+
+    /* Easing */
+    --ease-out:    cubic-bezier(0.25, 1, 0.5, 1);
+    --breathe:     cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ── Reset ── */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--brand-black);
+    color: var(--text-white);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    overflow-x: hidden;
+    perspective: 1000px;
+}
+
+/* Prevent scroll during splash */
+body.modal-open { overflow: hidden; }
+
+/* ── Global helpers ── */
+.blue-text { color: var(--brand-blue); }
+
+/* ── Cascade animation (used across sections) ── */
+.cascade-item {
+    opacity: 0;
+    will-change: transform, opacity, filter;
+    animation: emergeFromVoid 1.8s var(--breathe) forwards;
+}
+
+/* ── Keyframes ── */
+@keyframes liftCurtain {
+    0%   { transform: translateY(0); }
+    38%  { transform: translateY(0); }
+    100% { transform: translateY(-100%); }
+}
+
+@keyframes emergeFromVoid {
+    0% {
+        opacity: 0;
+        transform: scale(0.85) translateZ(-50px);
+        filter: blur(12px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateZ(0);
+        filter: blur(0px);
+    }
+}

@@ -1,0 +1,324 @@
+/* ============================================================
+   SERVICES.CSS — Sticky stacked service cards
+   Dhobi G Campus Laundry
+   ============================================================ */
+
+:root {
+    --svc-blue: #007BB5;
+    --svc-bg: #050505;
+    --svc-card: #0a0a0a;
+    --svc-text: #ffffff;
+    --svc-muted: rgba(255, 255, 255, 0.52);
+    --svc-line: rgba(255, 255, 255, 0.12);
+    --svc-ease: cubic-bezier(0.25, 1, 0.3, 1);
+}
+
+.services-section {
+    width: 100%;
+    background: var(--svc-bg);
+    color: var(--svc-text);
+    position: relative;
+    overflow: visible;
+}
+
+.svc-header {
+    min-height: 88vh;
+    padding: 96px 32px 72px;
+    background: var(--svc-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.svc-title-wrap {
+    position: relative;
+    display: inline-block;
+}
+
+.svc-header-title {
+    font-family: "League Gothic", sans-serif;
+    font-size: 11.8rem;
+    font-weight: 400;
+    line-height: 0.82;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.86);
+    margin: 0;
+}
+
+.svc-header-tag {
+    position: absolute;
+    top: 6px;
+    right: -100px;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0;
+    color: rgba(255, 255, 255, 0.52);
+    white-space: nowrap;
+}
+
+.services-stack {
+    position: relative;
+    padding: 8vh 0 max(78vh, 520px);
+    background: var(--svc-bg);
+}
+
+.service-row {
+    --card-index: 0;
+    --card-z: 1;
+    --card-scale: 1;
+    --card-y: 0px;
+    --card-opacity: 1;
+    --stack-offset: 0px;
+
+    position: sticky;
+    top: calc(90px + var(--stack-offset));
+    z-index: var(--card-z);
+
+    width: min(1320px, calc(100% - 96px));
+    min-height: min(520px, calc(100vh - 148px));
+    margin: 0 auto 20vh;
+    padding: 64px;
+
+    display: grid;
+    grid-template-columns: 150px 420px minmax(0, 1fr);
+    align-items: center;
+    gap: 76px;
+
+    background: var(--svc-card);
+    border: 1px solid var(--svc-line);
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 42px 110px rgba(0, 0, 0, 0.58);
+
+    opacity: var(--card-opacity);
+    transform: translateY(var(--card-y)) scale(var(--card-scale));
+    transform-origin: center top;
+    transition: filter 180ms ease, box-shadow 180ms ease;
+    will-change: transform, opacity;
+}
+
+.service-row:last-child {
+    margin-bottom: 0;
+}
+
+.service-row::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background:
+        linear-gradient(135deg, rgba(0, 123, 181, 0.16), transparent 34%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.045), transparent 48%);
+    opacity: 0.62;
+}
+
+.service-row.is-passed {
+    filter: brightness(0.78);
+}
+
+.service-row.is-current {
+    filter: brightness(1);
+    box-shadow: 0 54px 130px rgba(0, 0, 0, 0.76);
+}
+
+.svc-num,
+.svc-media,
+.svc-content {
+    position: relative;
+    z-index: 1;
+}
+
+.svc-num {
+    align-self: start;
+    font-family: "League Gothic", sans-serif;
+    font-size: 7.5rem;
+    font-weight: 400;
+    line-height: 0.85;
+    letter-spacing: 0;
+    color: rgba(255, 255, 255, 0.24);
+}
+
+.svc-num span {
+    color: var(--svc-blue);
+}
+
+.svc-media {
+    width: 100%;
+    aspect-ratio: 1.55 / 1;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #111111;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.svc-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.svc-content {
+    max-width: 600px;
+}
+
+.svc-content h3 {
+    font-family: "Inter", sans-serif;
+    font-size: 4.25rem;
+    font-weight: 800;
+    line-height: 0.96;
+    letter-spacing: 0;
+    color: rgba(255, 255, 255, 0.94);
+    margin: 0 0 18px;
+}
+
+.svc-content p {
+    font-family: "Inter", sans-serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.22;
+    letter-spacing: 0;
+    color: var(--svc-muted);
+    margin: 0 0 2.4rem;
+}
+
+.svc-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.svc-tags span {
+    min-height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 999px;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0;
+    color: rgba(255, 255, 255, 0.56);
+    background: rgba(255, 255, 255, 0.018);
+    white-space: nowrap;
+    transition: border-color 180ms ease, color 180ms ease, transform 180ms var(--svc-ease);
+}
+
+.svc-tags span:hover {
+    border-color: rgba(0, 123, 181, 0.75);
+    color: var(--svc-blue);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 1200px) {
+    .svc-header-title {
+        font-size: 9.5rem;
+    }
+
+    .service-row {
+        width: min(1080px, calc(100% - 64px));
+        grid-template-columns: 120px minmax(300px, 380px) minmax(0, 1fr);
+        gap: 44px;
+        padding: 48px;
+    }
+
+    .svc-num {
+        font-size: 6.6rem;
+    }
+
+    .svc-content h3 {
+        font-size: 3.4rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .svc-header {
+        min-height: auto;
+        padding: 72px 20px 56px;
+    }
+
+    .svc-title-wrap {
+        text-align: center;
+    }
+
+    .svc-header-title {
+        font-size: 5.1rem;
+        text-align: center;
+    }
+
+    .svc-header-tag {
+        position: static;
+        display: block;
+        margin-top: 16px;
+        text-align: center;
+    }
+
+    .services-stack {
+        padding: 18px 0 64px;
+    }
+
+    .service-row {
+        position: relative;
+        top: auto;
+        width: calc(100% - 32px);
+        min-height: auto;
+        margin: 0 auto 24px;
+        padding: 28px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 22px;
+        border-radius: 22px;
+        opacity: 1;
+        transform: none;
+        filter: none;
+    }
+
+    .service-row:last-child {
+        margin-bottom: 0;
+    }
+
+    .svc-num {
+        font-size: 5rem;
+    }
+
+    .svc-content {
+        max-width: 100%;
+    }
+
+    .svc-content h3 {
+        font-size: 2.65rem;
+    }
+
+    .svc-content p {
+        font-size: 1.08rem;
+        margin-bottom: 1.8rem;
+    }
+
+    .svc-tags span {
+        min-height: 38px;
+        padding: 8px 14px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 520px) {
+    .svc-header-title {
+        font-size: 4rem;
+    }
+
+    .service-row {
+        width: calc(100% - 24px);
+        padding: 22px;
+    }
+
+    .svc-content h3 {
+        font-size: 2.25rem;
+    }
+}
