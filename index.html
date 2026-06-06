@@ -6,7 +6,7 @@
     <title>DHOBI G</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Krona+One&family=Kosugi&family=Vina+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Krona+One&family=Kosugi&family=Vina+Sans&family=League+Gothic&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,43 +15,64 @@
         <h1 class="splash-logo">DHOBI <span class="logo-accent">G</span></h1>
     </div>
 
-    <main id="app" class="main-canvas">
-        
-        <header class="brand-header cascade-item">
-            <h1 class="main-logo">DHOBI <span class="blue-text">G</span></h1>
-        </header>
+    <header class="brand-header cascade-item" id="main-brand-logo">
+        <h1 class="main-logo">DHOBI <span class="blue-text">G</span></h1>
+    </header>
 
-        <div class="right-edge-tagline">
-            <h2 class="tagline-word cascade-item">EASIER.</h2>
-            <h2 class="tagline-word cascade-item">CLEANER.</h2>
-            <h2 class="tagline-word cascade-item blue-text">GREENER.</h2>
-        </div>
+    <div id="scroll-container">
 
-        <footer class="bottom-left-tech">
-            <p class="tech-heading cascade-item">OUR STATE-OF-THE-ART TECHNOLOGY:</p>
-            <p class="tech-description">
-                <span class="tech-line cascade-item">We utilise the <span class="blue-text">latest technology to provide</span></span>
-                <span class="tech-line cascade-item"><span class="blue-text">our customers most efficient laundry</span></span>
-                <span class="tech-line cascade-item"><span class="blue-text">services</span></span>
-            </p>
-        </footer>
-
-        <div class="middle-strip">
+        <main id="hero-canvas" class="main-canvas">
             
-            <div class="content-arena">
-                
-                <div class="center-square cascade-item">
-                    <video class="bg-blend-video" autoplay loop muted playsinline>
-                        <source src="washingmachine.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                
+            <div class="right-edge-tagline">
+                <h2 class="tagline-word cascade-item">EASIER.</h2>
+                <h2 class="tagline-word cascade-item">CLEANER.</h2>
+                <h2 class="tagline-word cascade-item blue-text">GREENER.</h2>
             </div>
 
-        </div>
+            <footer class="bottom-left-tech">
+                <p class="tech-heading cascade-item">OUR STATE-OF-THE-ART TECHNOLOGY:</p>
+                <p class="tech-description">
+                    <span class="tech-line cascade-item">We utilise the <span class="blue-text">latest technology to provide</span></span>
+                    <span class="tech-line cascade-item"><span class="blue-text">our customers most efficient laundry</span></span>
+                    <span class="tech-line cascade-item"><span class="blue-text">services</span></span>
+                </p>
+            </footer>
 
-    </main>
+            <div class="middle-strip">
+                <div class="content-arena">
+                    <div class="center-square cascade-item">
+                        <video id="laundry-video" class="bg-blend-video" muted playsinline preload="auto">
+                            <source src="washingmachine.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
 
+        </main>
+
+        <section id="before-section" class="content-section-roll">
+            <div class="section-layout-grid">
+                <div class="side-indicator">(BEFORE)</div>
+                <div class="quote-container">
+                    <p class="reveal-quote" id="scroll-reveal-text">
+                        Mixed-up garments, misplaced items, and delayed returns were common challenges, as tracking clothes through different stages relied heavily on manual supervision.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section id="after-section" class="content-section-roll">
+            <div class="card-stack">
+                <div class="card card-back-2"><img src="image3.png" alt="Gallery"></div>
+                <div class="card card-back-1"><img src="image2.png" alt="Gallery"></div>
+                <div class="card card-main"><img src="image1.png" alt="Gallery"></div>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
