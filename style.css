@@ -1,0 +1,275 @@
+:root {
+    --brand-blue: #007bb5;
+    --brand-black: #090909; 
+    --middle-grey: #0b0b0b;  /* Medium grey column strip background */
+    --grey-box: #2d2d2d;     /* Darker grey square box for placeholder slot */
+    --text-white: #ffffff;
+    
+    /* Typography Font Stacks */
+    --font-display: 'Vina Sans', sans-serif;
+    --font-heading: 'Krona One', sans-serif;
+    --font-body: 'Kosugi', sans-serif;
+    --breathe-curve: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--brand-black);
+    color: var(--text-white);
+    min-height: 100vh;
+    overflow-x: hidden;
+    perspective: 1000px; 
+}
+
+/* --- SPLASH SCREEN OVERLAY --- */
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--brand-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: liftCurtain 1.3s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+.splash-logo {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    text-transform: uppercase;
+}
+
+.logo-accent { 
+    color: var(--brand-black); 
+    margin-left: 0.1ch; 
+}
+
+.cascade-item {
+    opacity: 0;
+    will-change: transform, opacity, filter;
+    animation: emergeFromVoid 1.8s var(--breathe-curve) forwards;
+}
+
+.brand-header.cascade-item { animation-delay: 0.55s; }
+.center-square.cascade-item { animation-delay: 0.65s; }
+.right-edge-tagline .cascade-item:nth-child(1) { animation-delay: 0.75s; }
+.right-edge-tagline .cascade-item:nth-child(2) { animation-delay: 0.85s; }
+.right-edge-tagline .cascade-item:nth-child(3) { animation-delay: 0.95s; }
+.bottom-left-tech .tech-heading { animation-delay: 1.05s; }
+.tech-description .cascade-item:nth-child(1) { animation-delay: 1.15s; }
+.tech-description .cascade-item:nth-child(2) { animation-delay: 1.25s; }
+.tech-description .cascade-item:nth-child(3) { animation-delay: 1.35s; }
+
+.main-canvas {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center; 
+    background-color: var(--brand-black);
+    position: relative; 
+}
+
+.brand-header {
+    position: absolute;
+    top: 1.5rem;     
+    left: 1.5rem;    
+    z-index: 10;     
+    width: auto;
+}
+
+.main-logo {
+    font-family: var(--font-display);
+    font-size: clamp(4.5rem, 11vw, 11rem); 
+    text-transform: uppercase;
+    line-height: 0.85;
+    letter-spacing: -2px;
+    white-space: nowrap; 
+}
+
+.right-edge-tagline {
+    position: absolute;
+    top: 30vh;        
+    right: 1.5rem;    
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    text-align: right; 
+    z-index: 10;      
+}
+
+.tagline-word {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 3.5vw, 2.6rem); 
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+}
+
+.bottom-left-tech {
+    position: absolute;
+    bottom: 3rem;
+    left: calc(50vw - 600px - 200px); 
+    width: 550px; 
+    font-family: var(--font-body);
+    z-index: 15;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; 
+}
+
+.tech-heading {
+    font-size: clamp(0.75rem, 1.8vw, 1rem);
+    letter-spacing: 1px;
+    margin-bottom: 0.75rem;
+    text-align: right; 
+    width: 100%;
+}
+
+.tech-description {
+    text-align: right; 
+    width: 100%;
+    max-width: 480px; 
+}
+
+.tech-line {
+    display: block; 
+    font-size: clamp(0.9rem, 1.8vw, 1.25rem);
+    line-height: 1.5;
+}
+
+.blue-text {
+    color: var(--brand-blue);
+}
+
+.middle-strip {
+    width: 100%;
+    max-width: 1200px; 
+    background-color: var(--middle-grey);
+    position: relative; 
+    padding: 4rem 4%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    min-height: 100vh;
+}
+
+.content-arena {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* FIXED VIDEO SLAT CONTAINER: Keeps its 0.65s cascade delay intact */
+.center-square {
+    width: clamp(240px, 28vw, 380px);
+    aspect-ratio: 1 / 1; 
+    background-color: transparent; /* Allows underlying background strip color to unify bleeding */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    overflow: hidden;
+    position: relative;
+    
+    /* Vignette Overlay: Creates smooth, dark outer edges so the video frame vanishes into the strip */
+    box-shadow: inset 0 0 40px 20px var(--middle-grey);
+}
+
+/* FIXED HARDWARE BLEND OVERLAY WRAPPER */
+.bg-blend-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Crops the video beautifully into the square wrapper frame */
+    mix-blend-mode: lighten; /* Changes black canvas sections inside video to clear transparent values */
+    pointer-events: none;
+    position: relative;
+    z-index: -1; /* Ensures the container's inset vignetting shadow remains layered on top */
+}
+
+/* --- ANIMATION KEYFRAME SCHEMATICS --- */
+@keyframes liftCurtain {
+    0% { transform: translateY(0); }
+    38% { transform: translateY(0); } 
+    100% { transform: translateY(-100%); }
+}
+
+@keyframes emergeFromVoid {
+    0% { 
+        opacity: 0; 
+        transform: scale(0.85) translateZ(-50px); 
+        filter: blur(12px); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: scale(1) translateZ(0); 
+        filter: blur(0px); 
+    }
+}
+
+/* --- MOBILE ADAPTIVE VIEWPORTS BREAKPOINTS --- */
+@media (max-width: 1300px) {
+    .bottom-left-tech {
+        left: 2rem;
+        width: calc(50% - 2rem);
+        align-items: flex-start;
+    }
+    .tech-heading, .tech-description {
+        text-align: left;
+    }
+}
+
+@media (max-width: 900px) {
+    .main-canvas {
+        flex-direction: column;
+    }
+    .middle-strip {
+        min-height: auto;
+        padding: 6rem 4%; 
+    }
+    .brand-header {
+        position: relative; 
+        top: auto;
+        left: auto;
+        margin: 2rem 4% 0 4%;
+    }
+    .right-edge-tagline {
+        position: relative;
+        top: auto;
+        right: auto;
+        text-align: center;
+        margin: 2rem 4%;
+    }
+    .bottom-left-tech {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        width: auto;
+        margin: 2rem 4%;
+        padding: 0;
+        align-items: center;
+    }
+    .tech-heading, .tech-description {
+        text-align: center;
+        max-width: 100%;
+    }
+    .content-arena {
+        margin: 2rem 0;
+    }
+    .main-logo {
+        font-size: clamp(4.5rem, 15vw, 7rem);
+        white-space: normal;
+    }
+    .tagline-word {
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
+    }
+}
