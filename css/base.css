@@ -22,6 +22,7 @@
     --font-display: 'Vina Sans',  sans-serif;
     --font-heading: 'Krona One',  sans-serif;
     --font-body:    'Kosugi',     sans-serif;
+    --font-quote:   'League Gothic', sans-serif;
 
     /* Easing */
     --ease-out:    cubic-bezier(0.25, 1, 0.5, 1);
@@ -45,7 +46,10 @@ body {
 }
 
 /* Prevent scroll during splash */
-body.modal-open { overflow: hidden; }
+body.modal-open {
+    overflow: hidden;
+    height: 100vh;
+}
 
 /* ── Global helpers ── */
 .blue-text { color: var(--brand-blue); }
@@ -54,7 +58,6 @@ body.modal-open { overflow: hidden; }
 .cascade-item {
     opacity: 0;
     will-change: transform, opacity, filter;
-    animation: emergeFromVoid 1.8s var(--breathe) forwards;
 }
 
 /* ── Keyframes ── */

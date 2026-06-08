@@ -13,11 +13,11 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Krona+One&family=Kosugi&family=League+Gothic&family=Vina+Sans&display=swap"
         rel="stylesheet">
 
-    <!-- Stylesheets — load order matters -->
+    <!-- Stylesheets - load order matters -->
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/hero.css">
-    <link rel="stylesheet" href="css/services.css">
     <link rel="stylesheet" href="css/process.css">
+    <link rel="stylesheet" href="css/services.css">
     <link rel="stylesheet" href="css/footer.css">
 </head>
 
@@ -30,64 +30,81 @@
         <h1 class="splash-logo">DHOBI <span class="logo-accent">G</span></h1>
     </div>
 
-
     <!-- ════════════════════════════════════════════════════
-         STICKY NAV
-         nav-svc-num + nav-svc-name update via ui.js
-         as user scrolls through the services section
+         FIXED BRAND HEADER
     ════════════════════════════════════════════════════════ -->
-    <nav class="site-nav">
-        <a href="#hero" class="nav-logo">DHOBI <span class="accent">G</span></a>
-
-        <!-- Scroll indicator — hidden until services section is in view -->
-        <div class="nav-scroll-indicator">
+    <header class="brand-header cascade-item" id="main-brand-logo">
+        <h1 class="main-logo">DHOBI <span class="blue-text">G</span></h1>
+        <div class="nav-scroll-indicator" aria-hidden="true">
             <span id="nav-svc-num" class="nav-svc-num"></span>
             <span id="nav-svc-name" class="nav-svc-name"></span>
         </div>
-    </nav>
-
+    </header>
 
     <!-- ════════════════════════════════════════════════════
-         SECTION 01 — HERO
+         NEW HERO + BEFORE/AFTER PROCESS
     ════════════════════════════════════════════════════════ -->
-    <main id="hero" class="main-canvas">
+    <div id="scroll-container">
+        <main id="hero-canvas" class="main-canvas">
 
-        <header class="brand-header cascade-item">
-            <h1 class="main-logo">DHOBI <span class="blue-text">G</span></h1>
-        </header>
+            <div class="right-edge-tagline">
+                <h2 class="tagline-word cascade-item">EASIER.</h2>
+                <h2 class="tagline-word cascade-item">CLEANER.</h2>
+                <h2 class="tagline-word cascade-item blue-text">GREENER.</h2>
+            </div>
 
-        <div class="right-edge-tagline">
-            <h2 class="tagline-word cascade-item">EASIER.</h2>
-            <h2 class="tagline-word cascade-item">CLEANER.</h2>
-            <h2 class="tagline-word cascade-item blue-text">GREENER.</h2>
-        </div>
+            <footer class="bottom-left-tech">
+                <p class="tech-heading cascade-item">OUR STATE-OF-THE-ART TECHNOLOGY:</p>
+                <p class="tech-description">
+                    <span class="tech-line cascade-item">We utilise the <span class="blue-text">latest technology to
+                            provide</span></span>
+                    <span class="tech-line cascade-item"><span class="blue-text">our customers most efficient
+                            laundry</span></span>
+                    <span class="tech-line cascade-item"><span class="blue-text">services</span></span>
+                </p>
+            </footer>
 
-        <footer class="bottom-left-tech">
-            <p class="tech-heading cascade-item">OUR STATE-OF-THE-ART TECHNOLOGY:</p>
-            <p class="tech-description">
-                <span class="tech-line cascade-item">We utilise the <span class="blue-text">latest technology to
-                        provide</span></span>
-                <span class="tech-line cascade-item"><span class="blue-text">our customers most efficient
-                        laundry</span></span>
-                <span class="tech-line cascade-item"><span class="blue-text">services</span></span>
-            </p>
-        </footer>
-
-        <div class="middle-strip">
-            <div class="content-arena">
-                <div class="center-square cascade-item">
-                    <video class="bg-blend-video" autoplay loop muted playsinline>
-                        <source src="assets/washingmachine.mp4" type="video/mp4">
-                    </video>
+            <div class="middle-strip">
+                <div class="content-arena">
+                    <div class="center-square cascade-item">
+                        <video id="laundry-video" class="bg-blend-video" muted playsinline preload="auto">
+                            <source src="assets/washingmachine.mp4" type="video/mp4">
+                        </video>
+                    </div>
                 </div>
             </div>
-        </div>
 
-    </main>
+        </main>
 
+        <section id="before-section" class="content-section-roll">
+            <div class="section-layout-grid">
+                <div class="side-indicator">(BEFORE)</div>
+                <div class="quote-container">
+                    <p class="reveal-quote" id="scroll-reveal-text">
+                        Mixed-up garments, misplaced items, and delayed returns were common challenges, as tracking
+                        clothes through different stages relied heavily on manual supervision.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="after-section" class="content-section-roll">
+            <div class="card-stack">
+                <div class="card card-back-2">
+                    <img src="assets/images/process/image3.png" alt="Laundry process gallery">
+                </div>
+                <div class="card card-back-1">
+                    <img src="assets/images/process/image2.png" alt="Laundry process gallery">
+                </div>
+                <div class="card card-main">
+                    <img src="assets/images/process/image1.png" alt="Laundry process gallery">
+                </div>
+            </div>
+        </section>
+    </div>
 
     <!-- ════════════════════════════════════════════════════
-         SECTION 02 — SERVICES
+         SERVICES
     ════════════════════════════════════════════════════════ -->
     <section id="services" class="services-section">
 
@@ -201,22 +218,19 @@
     </section>
 
     <!-- ════════════════════════════════════════════════════
-         SECTION 03 — PROCESS
-    ════════════════════════════════════════════════════════ -->
-    <section id="process">
-        <!-- TODO -->
-    </section>
-
-    <!-- ════════════════════════════════════════════════════
-         SECTION 04 — FOOTER
+         FOOTER
     ════════════════════════════════════════════════════════ -->
     <footer id="footer">
         <!-- TODO -->
     </footer>
 
     <!-- Scripts — load once after DOM -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/modules/processReveal.js"></script>
+    <script src="js/modules/heroIntro.js"></script>
+    <script src="js/modules/servicesAccordion.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/ui.js"></script>
 
 </body>
 
