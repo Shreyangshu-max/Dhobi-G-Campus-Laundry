@@ -1,106 +1,130 @@
 /* ============================================================
-   UI.JS — Services sticky stack + nav indicator
+   UI.JS - Services scroll accordion
    Dhobi G Campus Laundry
    ============================================================ */
 
-(function initServicesStack() {
-    const section = document.querySelector(".services-section");
-    const cards = Array.from(document.querySelectorAll(".service-row[data-name]"));
+(function initServicesAccordion() {
+    const serviceRows = Array.from(document.querySelectorAll(".service-row"));
     const navNum = document.getElementById("nav-svc-num");
     const navName = document.getElementById("nav-svc-name");
 
-    if (!section || !cards.length) return;
+    if (!serviceRows.length) return;
 
+    let activeRow = null;
     let ticking = false;
-    let viewportHeight = window.innerHeight;
 
-    const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+    const setNav = (row) => {
+        if (!navNum || !navName || !row) return;
 
-    cards.forEach((card, index) => {
-        card.style.setProperty("--card-index", index);
-        card.style.setProperty("--card-z", index + 2);
-        card.style.setProperty("--stack-offset", `${index * 18}px`);
-        card.style.setProperty("--card-scale", 1);
-        card.style.setProperty("--card-y", "0px");
-        card.style.setProperty("--card-opacity", 1);
-    });
+        navNum.textContent = row.dataset.num || "";
+        navName.textContent = row.dataset.name || "";
 
-    function setNav(activeCard, isVisible) {
-        if (!navNum || !navName) return;
-
-        if (!activeCard || !isVisible) {
-            navNum.classList.remove("visible");
-            navName.classList.remove("visible");
-            navNum.textContent = "";
-            navName.textContent = "";
-            return;
-        }
-
-        navNum.textContent = activeCard.dataset.num || "";
-        navName.textContent = activeCard.dataset.name || "";
         navNum.classList.add("visible");
         navName.classList.add("visible");
-    }
+    };
 
-    function updateStackCards() {
-        ticking = false;
+    const openRow = (nextRow) => {
+        if (!nextRow || nextRow === activeRow) return;
 
-        const sectionRect = section.getBoundingClientRect();
-        const sectionVisible = sectionRect.top < viewportHeight && sectionRect.bottom > 0;
-        const measurements = cards.map((card) => {
-            const rect = card.getBoundingClientRect();
-            return {
-                card,
-                top: rect.top,
-                height: rect.height
-            };
-        });
+        serviceRows.forEach((row) => row.classList.remove("is-active"));
+        nextRow.classList.add("is-active");
 
-        let activeIndex = -1;
-        const activeLine = viewportHeight * 0.52;
+        activeRow = nextRow;
+        setNav(nextRow);
+    };
 
-        measurements.forEach((measurement, index) => {
-            if (measurement.top <= activeLine) {
-                activeIndex = index;
+    const updateActiveByScroll = () => {
+        /*
+          Activation line:
+          The row closest to this invisible line becomes active.
+          0.42 = slightly above center, like Nakula-style scrolling.
+        */
+        const activationLine = window.innerHeight * 0.42;
+
+        let closestRow = serviceRows[0];
+        let closestDistance = Infinity;
+
+        serviceRows.forEach((row) => {
+            const rect = row.getBoundingClientRect();
+            const distance = Math.abs(rect.top - activationLine);
+
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closestRow = row;
             }
         });
 
-        measurements.forEach((measurement, index) => {
-            const next = measurements[index + 1];
-            const coverStart = viewportHeight * 0.78;
-            const coverEnd = 108 + index * 18;
-            const coverProgress = next
-                ? clamp((coverStart - next.top) / Math.max(coverStart - coverEnd, 1), 0, 1)
-                : 0;
+        openRow(closestRow);
+        ticking = false;
+    };
 
-            const scale = 1 - coverProgress * 0.045;
-            const y = -coverProgress * 24;
-            const opacity = 1 - coverProgress * 0.14;
+    const requestScrollUpdate = () => {
+        if (!ticking) {
+            window.requestAnimationFrame(updateActiveByScroll);
+            ticking = true;
+        }
+    };
 
-            measurement.card.style.setProperty("--card-scale", scale.toFixed(3));
-            measurement.card.style.setProperty("--card-y", `${y.toFixed(1)}px`);
-            measurement.card.style.setProperty("--card-opacity", opacity.toFixed(3));
-            measurement.card.classList.toggle("is-passed", coverProgress > 0.58);
-            measurement.card.classList.toggle("is-current", index === activeIndex);
+    serviceRows.forEach((row) => {
+        row.removeAttribute("tabindex");
+
+        row.addEventListener("click", () => {
+            openRow(row);
         });
+    });
 
-        setNav(cards[activeIndex], sectionVisible && activeIndex >= 0);
-    }
+    window.addEventListener("scroll", requestScrollUpdate, { passive: true });
+    window.addEventListener("resize", requestScrollUpdate);
 
-    function requestUpdate() {
-        if (ticking) return;
-        ticking = true;
-        window.requestAnimationFrame(updateStackCards);
-    }
+    openRow(serviceRows[0]);
+    updateActiveByScroll();
+})();
+/* ============================================================
+   PROCESS SECTION — Before text reveal
+   ============================================================ */
 
-    function handleResize() {
-        viewportHeight = window.innerHeight;
-        requestUpdate();
-    }
+(function initProcessReveal() {
+    const quoteElement = document.getElementById("scroll-reveal-text");
 
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("load", handleResize);
+    if (!quoteElement) return;
 
-    requestUpdate();
+    const textContent = quoteElement.textContent.trim();
+    quoteElement.innerHTML = "";
+
+    Array.from(textContent).forEach((char) => {
+        const span = document.createElement("span");
+        span.className = "char-span";
+        span.innerHTML = char === " " ? "&nbsp;" : char;
+        quoteElement.appendChild(span);
+    });
+
+    const chars = Array.from(quoteElement.querySelectorAll(".char-span"));
+
+    const updateReveal = () => {
+        const rect = quoteElement.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+
+        const progress = Math.min(
+            1,
+            Math.max(0, (windowHeight * 0.78 - rect.top) / (windowHeight * 0.7))
+        );
+
+        const activeCount = Math.floor(progress * chars.length);
+
+        chars.forEach((char, index) => {
+            char.style.color =
+                index < activeCount
+                    ? "#007BB5"
+                    : "rgba(255, 255, 255, 0.14)";
+        });
+    };
+
+    window.addEventListener("scroll", () => {
+        requestAnimationFrame(updateReveal);
+    }, { passive: true });
+
+    window.addEventListener("resize", updateReveal);
+    window.addEventListener("load", updateReveal);
+
+    updateReveal();
 })();
